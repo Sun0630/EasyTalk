@@ -1,14 +1,17 @@
 package com.sx.easytalk.view;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.sx.easytalk.MainActivity;
 import com.sx.easytalk.R;
+import com.sx.easytalk.adapter.AnimatorListenerAdapter;
 import com.sx.easytalk.presenter.ISplashPresenter;
 import com.sx.easytalk.presenter.SplashPresenterImpl;
 
-public class SplashActivity extends AppCompatActivity implements ISplashView{
+public class SplashActivity extends BaseActivity implements ISplashView {
 
 
     private ImageView iv_splash;
@@ -42,11 +45,22 @@ public class SplashActivity extends AppCompatActivity implements ISplashView{
 
     @Override
     public void onCheckLogined(boolean isLogin) {
-        if (isLogin){
+        if (isLogin) {
             //已经登录，跳转MainActivity
-
-        }else {
-            //没有登录，跳转LoginActivity
+            startActivity(MainActivity.class, true);
+        } else {
+            //没有登录，闪屏页持续一个2s的透明度动画然后跳转LoginActivity
+            ObjectAnimator animator = ObjectAnimator
+                    .ofFloat(iv_splash, "alpha",0,1)
+                    .setDuration(2000);
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    startActivity(LoginActivity.class, true);
+                }
+            });
+            animator.start();
 
         }
     }
