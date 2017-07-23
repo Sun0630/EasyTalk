@@ -10,6 +10,8 @@ import com.hyphenate.chat.EMOptions;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * @Author sunxin
  * @Date 2017/7/22 16:53
@@ -22,6 +24,15 @@ public class IMApplication extends Application {
         super.onCreate();
         //初始化环信
         initEaseMob();
+        //初始化Bmob
+        initBmob();
+    }
+
+    /**
+     * 初始化Bmob
+     */
+    private void initBmob() {
+        Bmob.initialize(this,"9cafeb8852d63494346f013f18a0872e");
     }
 
     /**
