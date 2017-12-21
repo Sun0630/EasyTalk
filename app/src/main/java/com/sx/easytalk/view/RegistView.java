@@ -7,4 +7,5 @@ package com.sx.easytalk.view;
  */
 
 public interface RegistView {
+    void onRegist(String userName,String pwd,boolean isSuccess,String errorMsg);
 }

@@ -3,18 +3,17 @@ package com.sx.easytalk.view;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sx.easytalk.R;
 import com.sx.easytalk.presenter.RegistPresenter;
 import com.sx.easytalk.presenter.RegistePresenterImpl;
+import com.sx.easytalk.utils.StringUtils;
 
 public class RegistActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, RegistView {
 
@@ -70,22 +69,30 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
      * @param pwd
      */
     private void regist(String username, String pwd) {
-        mRegistPresenter.login(username, pwd);
+        mRegistPresenter.regist(username, pwd);
     }
 
     private void submit() {
         // validate
         String username = et_username.getText().toString().trim();
-        if (TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "username不能为空", Toast.LENGTH_SHORT).show();
+        if (!StringUtils.checkUserName(username)) {
+            til_username.setErrorEnabled(true);
+            til_username.setError("用户名不合法");
+            //将光标定位到用户名输入框右侧
+            et_username.requestFocus(View.FOCUS_RIGHT);
             return;
         }
 
         String pwd = et_pwd.getText().toString().trim();
-        if (TextUtils.isEmpty(pwd)) {
-            Toast.makeText(this, "pwd不能为空", Toast.LENGTH_SHORT).show();
+        if (!StringUtils.checkPwd(pwd)) {
+            til_pwd.setErrorEnabled(true);
+            til_pwd.setError("密码不合法");
+            et_pwd.requestFocus(View.FOCUS_RIGHT);
             return;
         }
+
+
+
         regist(username, pwd);
 
     }
@@ -99,5 +106,17 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
         return false;
+    }
+
+    /**
+     * 注册回调
+     * @param userName
+     * @param pwd
+     * @param isSuccess 是否成功
+     * @param errorMsg 错误信息
+     */
+    @Override
+    public void onRegist(String userName, String pwd, boolean isSuccess, String errorMsg) {
+
     }
 }

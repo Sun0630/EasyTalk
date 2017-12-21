@@ -31,7 +31,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:26.0.0-alpha1'
     /*环信*/
-    compile 'com.hyphenate:hyphenate-sdk-lite:3.3.0'
+    compile 'com.hyphenate:hyphenate-sdk:3.3.0'
     /*Bmob后端云*/
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
 }

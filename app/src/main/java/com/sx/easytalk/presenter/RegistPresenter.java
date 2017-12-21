@@ -8,5 +8,5 @@ package com.sx.easytalk.presenter;
 
 public interface RegistPresenter {
     //注册
-    void login(String username,String pwd);
+    void regist(String username,String pwd);
 }
