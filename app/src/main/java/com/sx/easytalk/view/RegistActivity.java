@@ -2,7 +2,6 @@ package com.sx.easytalk.view;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -15,7 +14,7 @@ import com.sx.easytalk.presenter.RegistPresenter;
 import com.sx.easytalk.presenter.RegistePresenterImpl;
 import com.sx.easytalk.utils.StringUtils;
 
-public class RegistActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, RegistView {
+public class RegistActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener, RegistView {
 
     private EditText et_username;
     private TextInputLayout til_username;
@@ -90,9 +89,7 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
             et_pwd.requestFocus(View.FOCUS_RIGHT);
             return;
         }
-
-
-
+        showDialog("正在注册中...");
         regist(username, pwd);
 
     }
@@ -110,13 +107,21 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
 
     /**
      * 注册回调
+     *
      * @param userName
      * @param pwd
      * @param isSuccess 是否成功
-     * @param errorMsg 错误信息
+     * @param errorMsg  错误信息
      */
     @Override
     public void onRegist(String userName, String pwd, boolean isSuccess, String errorMsg) {
-
+        hideDialog();
+        if (isSuccess) {
+            //注册成功,把信息保存到本地，跳转到登陆页面
+            saveUser(userName,pwd);
+            startActivity(LoginActivity.class,true);
+        } else {
+            showToast("注册失败" + errorMsg);
+        }
     }
 }
