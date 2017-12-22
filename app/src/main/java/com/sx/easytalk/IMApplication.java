@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +28,12 @@ public class IMApplication extends Application {
         initEaseMob();
         //初始化Bmob
         initBmob();
+        //初始化Logger
+        initLogger();
+    }
+
+    private void initLogger() {
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     /**

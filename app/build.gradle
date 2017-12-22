@@ -34,4 +34,11 @@ dependencies {
     compile 'com.hyphenate:hyphenate-sdk:3.3.0'
     /*Bmob后端云*/
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
+    /*日志打印*/
+    compile 'com.orhanobut:logger:2.1.1'
+    /*状态栏工具*/
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
+    /*注解框架*/
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

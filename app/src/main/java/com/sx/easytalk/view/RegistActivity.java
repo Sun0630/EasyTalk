@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.sx.easytalk.R;
 import com.sx.easytalk.presenter.RegistPresenter;
 import com.sx.easytalk.presenter.RegistePresenterImpl;
@@ -28,6 +29,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
+        StatusBarUtil.setTransparent(this);
         initView();
         initData();
         initListener();
