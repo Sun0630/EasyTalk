@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        app:showAsAction="never"
+        android:id="@+id/add_friedn"
+        android:icon="@mipmap/add_friend_pressed"
+        android:title="添加朋友"/>
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/add_scan"
+        android:icon="@mipmap/scan_pressed"
+        android:title="扫一扫"/>
+</menu>
