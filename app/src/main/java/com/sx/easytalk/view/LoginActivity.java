@@ -1,8 +1,12 @@
 package com.sx.easytalk.view;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,6 +24,7 @@ import com.sx.easytalk.utils.StringUtils;
 public class LoginActivity extends BaseActivity implements View.OnClickListener
         , TextView.OnEditorActionListener, LoginView {
 
+    private static final int REQUEST_SDCARD = 0x0011;
     private EditText et_username;
     private TextInputLayout til_username;
     private EditText et_pwd;
@@ -118,8 +123,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener
             return;
         }
 
+        //动态申请读写SDcard的权限
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PermissionChecker.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this
+                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_SDCARD);
+            return;
+        }
+
         showDialog("正在登录中...");
         mLoginPresenter.login(username, pwd);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_SDCARD){
+            if (grantResults[0]==PermissionChecker.PERMISSION_GRANTED){
+                //授权成功
+                login();
+            }else {
+                showToast("没有权限访问！");
+            }
+        }
     }
 
     @Override
