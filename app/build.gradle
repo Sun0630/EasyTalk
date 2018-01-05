@@ -26,22 +26,24 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    /*环信*/
+    /*Bmob后端云*/
+    /*日志打印*/
+    /*状态栏工具*/
+    /*注解框架*/
+    /*底部导航栏*/
+
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:26.0.0-alpha1'
-    /*环信*/
     compile 'com.hyphenate:hyphenate-sdk:3.3.0'
-    /*Bmob后端云*/
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
-    /*日志打印*/
     compile 'com.orhanobut:logger:2.1.1'
-    /*状态栏工具*/
     compile 'com.jaeger.statusbarutil:library:1.4.0'
-    /*注解框架*/
     compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    /*底部导航栏*/
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
-
+    compile 'com.android.support:support-v4:25.3.1'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
