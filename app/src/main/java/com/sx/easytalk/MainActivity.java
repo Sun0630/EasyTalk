@@ -1,6 +1,8 @@
 package com.sx.easytalk;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +28,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar mBottomNavigationBar;
 
+    private int[] titleIds = {R.string.conversation,R.string.contact,R.string.plugin};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +45,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         mToolBar.setTitle("");
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mTvTitle.setText("消息");
+        mTvTitle.setText(titleIds[0]);
     }
 
     private void initBottomNavigation() {
         mBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.conversation_selected_2, "消息"))
-                .addItem(new BottomNavigationItem(R.mipmap.contact_selected_2, "联系人"))
-                .addItem(new BottomNavigationItem(R.mipmap.plugin_selected_2, "动态"))
+                .addItem(new BottomNavigationItem(R.mipmap.conversation_selected_2, titleIds[0]))
+                .addItem(new BottomNavigationItem(R.mipmap.contact_selected_2, titleIds[1]))
+                .addItem(new BottomNavigationItem(R.mipmap.plugin_selected_2, titleIds[2]))
                 .setActiveColor(R.color.btnNormal)
                 .setInActiveColor(R.color.inActive)
                 .initialise();
@@ -58,6 +62,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
 
     private void initFragment() {
+        /*解决热部署Fragment重影问题*/
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (int i = 0; i < titleIds.length; i++) {
+            Fragment fragment = fragmentManager.findFragmentByTag(i + "");
+            if (fragment != null) {
+                transaction.remove(fragment);
+            }
+        }
+
+        transaction.commit();
+
         getSupportFragmentManager().beginTransaction().add(R.id.fl_container,
                 FragmentFactory.getFragment(0), "0").commit();
     }
@@ -101,6 +117,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             transaction.add(R.id.fl_container, FragmentFactory.getFragment(position));
         }
         transaction.show(fragment).commit();
+        mTvTitle.setText(titleIds[position]);
     }
 
     @Override

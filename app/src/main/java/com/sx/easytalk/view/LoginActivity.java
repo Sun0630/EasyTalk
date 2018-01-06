@@ -18,7 +18,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.sx.easytalk.MainActivity;
 import com.sx.easytalk.R;
 import com.sx.easytalk.presenter.LoginPresenter;
-import com.sx.easytalk.presenter.LoginPresenterImpl;
+import com.sx.easytalk.presenter.impl.LoginPresenterImpl;
 import com.sx.easytalk.utils.StringUtils;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener

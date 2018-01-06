@@ -9,7 +9,7 @@ import com.sx.easytalk.MainActivity;
 import com.sx.easytalk.R;
 import com.sx.easytalk.adapter.AnimatorListenerAdapter;
 import com.sx.easytalk.presenter.ISplashPresenter;
-import com.sx.easytalk.presenter.SplashPresenterImpl;
+import com.sx.easytalk.presenter.impl.SplashPresenterImpl;
 
 public class SplashActivity extends BaseActivity implements ISplashView {
 

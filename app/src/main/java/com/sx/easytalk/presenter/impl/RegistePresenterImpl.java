@@ -1,8 +1,9 @@
-package com.sx.easytalk.presenter;
+package com.sx.easytalk.presenter.impl;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.sx.easytalk.model.User;
+import com.sx.easytalk.presenter.RegistPresenter;
 import com.sx.easytalk.utils.ThreadUtils;
 import com.sx.easytalk.view.RegistView;
 

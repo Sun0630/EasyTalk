@@ -1,6 +1,7 @@
-package com.sx.easytalk.presenter;
+package com.sx.easytalk.presenter.impl;
 
 import com.hyphenate.chat.EMClient;
+import com.sx.easytalk.presenter.ISplashPresenter;
 import com.sx.easytalk.view.ISplashView;
 
 /**

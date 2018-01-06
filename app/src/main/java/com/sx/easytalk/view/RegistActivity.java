@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.jaeger.library.StatusBarUtil;
 import com.sx.easytalk.R;
 import com.sx.easytalk.presenter.RegistPresenter;
-import com.sx.easytalk.presenter.RegistePresenterImpl;
+import com.sx.easytalk.presenter.impl.RegistePresenterImpl;
 import com.sx.easytalk.utils.StringUtils;
 
 public class RegistActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener, RegistView {
