@@ -8,6 +8,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.sx.easytalk.db.DbUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +31,11 @@ public class IMApplication extends Application {
         initBmob();
         //初始化Logger
         initLogger();
+        initDB();
+    }
+
+    private void initDB() {
+        DbUtils.initDb(this);
     }
 
     private void initLogger() {
