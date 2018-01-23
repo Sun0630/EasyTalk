@@ -4,10 +4,9 @@
              android:layout_height="match_parent"
              tools:context="com.sx.easytalk.view.fragment.ContactFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.sx.easytalk.widget.ContactLayout
+        android:id="@+id/contactLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="联系人"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
