@@ -1,5 +1,6 @@
 package com.sx.easytalk.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -41,8 +42,33 @@ public class DbUtils {
 
         cursor.close();
         database.close();
-
-
         return contactList;
     }
+
+
+    /**
+     * 更新联系人，先把原来的都删除，在添加新的联系人
+     * @param username
+     * @param contacts
+     */
+    public static void updateContacts(String username,List<String> contacts){
+        ContactOpenHelper openHelper = new ContactOpenHelper(sContext);
+        SQLiteDatabase database = openHelper.getWritableDatabase();
+
+        //开启事务
+        database.beginTransaction();
+
+        //删除
+        database.delete(ContactOpenHelper.TABLE_NAME,ContactOpenHelper.USERNAME+"=?",new String[]{username});
+        ContentValues values = new ContentValues();
+        values.put(ContactOpenHelper.USERNAME,username);
+        for (int i = 0; i < contacts.size(); i++) {
+            values.put(ContactOpenHelper.CONTACT,contacts.get(i));
+            database.insert(ContactOpenHelper.TABLE_NAME,null,values);
+        }
+        database.setTransactionSuccessful();
+        database.endTransaction();
+        database.close();
+    }
+
 }
